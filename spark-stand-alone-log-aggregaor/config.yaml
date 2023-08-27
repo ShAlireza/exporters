@@ -1,0 +1,45 @@
+clusters:
+  - name: staging
+    masters:
+      - name: master1
+        host: http://172.16.24.11:8080
+        metrics_path: /metrics/master/prometheus
+        applications_metrics_path: /metrics/applications/prometheus
+
+      - name: master2
+        host: http://172.16.24.21:8080
+        metrics_path: /metrics/master/prometheus
+        applications_metrics_path: /metrics/applications/prometheus
+
+    workers:
+      - name: worker1
+        host: http://172.16.24.11:8081
+        metrics_path: /metrics/prometheus
+
+      - name: worker2
+        host: http://172.16.24.12:8081
+        metrics_path: /metrics/prometheus
+
+      - name: worker3
+        host: http://172.16.24.13:8081
+        metrics_path: /metrics/prometheus
+
+      - name: worker4
+        host: http://172.16.24.21:8081
+        metrics_path: /metrics/prometheus
+
+    histories:
+      - name: history1
+        host: http://172.16.24.11:18080
+        api_path: "/api/v1"
+
+      - name: history2
+        host: http://172.16.24.21:18080
+        api_path: "/api/v1"
+
+    applications: []
+    static_applications:
+      - "Thrift JDBC/ODBC Server"
+
+    max_ports_search: 3
+    application_base_port: 4040
